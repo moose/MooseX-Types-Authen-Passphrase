@@ -1,0 +1,6 @@
+/.ackrc
+/.build/
+!/.gitignore
+/.latest
+/MooseX-Types-Authen-Passphrase-*/
+/MooseX-Types-Authen-Passphrase-*.tar.gz

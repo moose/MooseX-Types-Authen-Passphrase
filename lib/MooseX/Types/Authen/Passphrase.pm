@@ -1,9 +1,8 @@
 package MooseX::Types::Authen::Passphrase;
+# ABSTRACT: L<Authen::Passphrase> type constraint and coercions
 
 use strict;
 use warnings;
-
-our $VERSION = "0.02";
 
 use Authen::Passphrase;
 use Authen::Passphrase::RejectAll;
@@ -45,11 +44,6 @@ __PACKAGE__
 __END__
 
 =pod
-
-=head1 NAME
-
-MooseX::Types::Authen::Passphrase - L<Authen::Passphrase> type constraint and
-coercions
 
 =head1 SYNOPSIS
 
@@ -101,21 +95,5 @@ C<from_crypt> otherwise.
 =back
 
 =back
-
-=head1 VERSION CONTROL
-
-This module is maintained using Darcs. You can get the latest version from
-L<http://nothingmuch.woobling.org/code>, and use C<darcs send> to commit
-changes.
-
-=head1 AUTHOR
-
-Yuval Kogman E<lt>nothingmuch@woobling.orgE<gt>
-
-=head1 COPYRIGHT
-
-	Copyright (c) 2008 Yuval Kogman. All rights reserved
-	This program is free software; you can redistribute
-	it and/or modify it under the same terms as Perl itself.
 
 =cut
