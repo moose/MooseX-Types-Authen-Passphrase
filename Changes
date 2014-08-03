@@ -1,3 +1,5 @@
+    - repository migrated to the github moose organization
+
 0.02
     - use MooseX::Types::Moose to prevent warnings
 
