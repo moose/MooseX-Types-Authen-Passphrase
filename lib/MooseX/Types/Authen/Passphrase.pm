@@ -73,13 +73,11 @@ L<Authen::Passphrase> family of classes.
 
 =head1 TYPES
 
-=over 4
+=head2 C<Authen::Passphrase>, C<Passphrase>
 
-=item C<Authen::Passphrase>
+These are defined a class types.
 
-This is defined as a class type
-
-The following coercions are defined
+The following coercions are defined:
 
 =over 4
 
@@ -91,8 +89,6 @@ Returns L<Authen::Passphrase::RejectAll>
 
 Parses using C<from_rfc2307> if the string begins with a C<{>, or using
 C<from_crypt> otherwise.
-
-=back
 
 =back
 
