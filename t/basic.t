@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 
+use Config;
 use Test::More tests => 15;
 
 use ok "MooseX::Types::Authen::Passphrase";
@@ -39,7 +40,9 @@ use ok "MooseX::Types::Authen::Passphrase";
     ok( !$u->check_password("bar"), "password checking" );
 }
 
-{
+SKIP: {
+    skip("crypt() not available on this system", 3) unless $Config{d_crypt};
+
     my $u = User->new( pass => crypt("foo", "bar") );
 
     isa_ok( $u->pass, "Authen::Passphrase" );
