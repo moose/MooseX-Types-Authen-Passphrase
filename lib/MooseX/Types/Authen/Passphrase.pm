@@ -18,25 +18,25 @@ class_type Passphrase, { class => "Authen::Passphrase" };
 
 foreach my $type ( "Authen::Passphrase", Passphrase ) {
     coerce( $type,
-		from Undef, via { Authen::Passphrase::RejectAll->new },
-		from Str, via {
-			if ( /^\{/ ) {
-				return Authen::Passphrase->from_rfc2307($_);
-			} else {
-				return Authen::Passphrase->from_crypt($_);
-				#my ( $p, $e ) = do { local $@; my $p = eval { Authen::Passphrase->from_crypt($_) }; ( $p, $@ ) };
+        from Undef, via { Authen::Passphrase::RejectAll->new },
+        from Str, via {
+            if ( /^\{/ ) {
+                return Authen::Passphrase->from_rfc2307($_);
+            } else {
+                return Authen::Passphrase->from_crypt($_);
+                #my ( $p, $e ) = do { local $@; my $p = eval { Authen::Passphrase->from_crypt($_) }; ( $p, $@ ) };
 
-				#if ( ref $p and $p->isa("Authen::Passphrase::RejectAll") and length($_) ) {
-				#	warn "e: $e";
-				#	return Authen::Passphrase::Clear->new($_);
-				#} elsif ( $e ) {
-				#	die $e;
-				#} else {
-				#	return $p;
-				#}
-			}		
-		},
-	);
+                #if ( ref $p and $p->isa("Authen::Passphrase::RejectAll") and length($_) ) {
+                #    warn "e: $e";
+                #    return Authen::Passphrase::Clear->new($_);
+                #} elsif ( $e ) {
+                #    die $e;
+                #} else {
+                #    return $p;
+                #}
+            }
+        },
+    );
 }
 
 __PACKAGE__
@@ -47,24 +47,24 @@ __END__
 
 =head1 SYNOPSIS
 
-	package User;
-	use Moose;
+    package User;
+    use Moose;
 
-	use MooseX::Types::Authen::Passphrase qw(Passphrase);
+    use MooseX::Types::Authen::Passphrase qw(Passphrase);
 
-	has pass => (
-		isa => Passphrase,
-		coerce => 1,
-		handles => { check_password => "match" },
-	);
+    has pass => (
+        isa => Passphrase,
+        coerce => 1,
+        handles => { check_password => "match" },
+    );
 
-	User->new( pass => undef ); # Authen::Passphrase::RejectAll
+    User->new( pass => undef ); # Authen::Passphrase::RejectAll
 
-	my $u = User->new( pass => "{SSHA}ixZcpJbwT507Ch1IRB0KjajkjGZUMzX8gA==" );
+    my $u = User->new( pass => "{SSHA}ixZcpJbwT507Ch1IRB0KjajkjGZUMzX8gA==" );
 
-	$u->check_password("foo"); # great success
+    $u->check_password("foo"); # great success
 
-	User->new( pass => Authen::Passphrase::Clear->new("foo") ); # clear text is not coerced by default
+    User->new( pass => Authen::Passphrase::Clear->new("foo") ); # clear text is not coerced by default
 
 =head1 DESCRIPTION
 
