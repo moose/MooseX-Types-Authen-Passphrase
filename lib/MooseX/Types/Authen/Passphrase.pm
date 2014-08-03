@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 package MooseX::Types::Authen::Passphrase;
 
 use strict;
