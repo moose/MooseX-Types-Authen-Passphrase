@@ -1,0 +1,89 @@
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+MooseX::Types::Authen::Passphrase - L<Authen::Passphrase> type constraint and coercions
+
+=head1 VERSION
+
+version 0.03
+
+=head1 SYNOPSIS
+
+    package User;
+    use Moose;
+
+    use MooseX::Types::Authen::Passphrase qw(Passphrase);
+
+    has pass => (
+        isa => Passphrase,
+        coerce => 1,
+        handles => { check_password => "match" },
+    );
+
+    User->new( pass => undef ); # Authen::Passphrase::RejectAll
+
+    my $u = User->new( pass => "{SSHA}ixZcpJbwT507Ch1IRB0KjajkjGZUMzX8gA==" );
+
+    $u->check_password("foo"); # great success
+
+    User->new( pass => Authen::Passphrase::Clear->new("foo") ); # clear text is not coerced by default
+
+=head1 DESCRIPTION
+
+This L<MooseX::Types> library provides string coercions for the
+L<Authen::Passphrase> family of classes.
+
+=head1 TYPES
+
+=head2 C<Authen::Passphrase>, C<Passphrase>
+
+These are defined a class types.
+
+The following coercions are defined:
+
+=over 4
+
+=item from C<Undef>
+
+Returns L<Authen::Passphrase::RejectAll>
+
+=item from C<Str>
+
+Parses using C<from_rfc2307> if the string begins with a C<{>, or using
+C<from_crypt> otherwise.
+
+=back
+
+=head1 AUTHOR
+
+יובל קוג'מן (Yuval Kogman) <nothingmuch@woobling.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2008 by Yuval Kogman.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=head1 CONTRIBUTORS
+
+=over 4
+
+=item *
+
+Brian Fraser <fraserbn@gmail.com>
+
+=item *
+
+Karen Etheridge <ether@cpan.org>
+
+=item *
+
+Yuval Kogman <nothingmuch@woobling.org>
+
+=back
+
+=cut

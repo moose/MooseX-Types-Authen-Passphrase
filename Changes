@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.03      2014-08-04 00:00:02Z
     - repository migrated to the github moose organization
     - tests now gracefully handle systems that lack crypt() (Brian Fraser,
       RT#97721)
