@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - re-release to remove README.pod from shipped dist
 
 0.03      2014-08-04 00:00:02Z
     - repository migrated to the github moose organization
