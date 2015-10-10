@@ -13,7 +13,7 @@ use MooseX::Types::Moose qw(Str Undef);
 
 use MooseX::Types -declare => [qw(Passphrase)];
 
-use namespace::clean;
+use namespace::clean 0.19;
 
 class_type "Authen::Passphrase";
 class_type Passphrase, { class => "Authen::Passphrase" };
