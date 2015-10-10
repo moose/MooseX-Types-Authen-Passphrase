@@ -14,6 +14,7 @@ use MooseX::Types::Moose qw(Str Undef);
 use MooseX::Types -declare => [qw(Passphrase)];
 
 use namespace::clean 0.19;
+use if MooseX::Types->VERSION >= 0.42, 'namespace::autoclean';
 
 class_type "Authen::Passphrase";
 class_type Passphrase, { class => "Authen::Passphrase" };
